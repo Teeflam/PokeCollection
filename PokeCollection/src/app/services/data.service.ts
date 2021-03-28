@@ -10,7 +10,7 @@ export class DataService {
   constructor( private http: HttpClient) {  }
 
   getPokemon() {
-     return this.http.get('https://pokeapi.co/api/v2/pokemon?limit=10');
+    return this.http.get('https://pokeapi.co/api/v2/pokemon?limit=100');
   }
 
   getMoreData (name: string) {
