@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { EMPTY, Observable, of } from 'rxjs';
+import firebase from 'firebase';
 
 export interface Pokemon {
   pokemonID: number;
@@ -19,17 +20,10 @@ export class CollectionService {
     }
     return EMPTY;
   }
-  getePokemon(): Observable<any> {
-    return this.db.list('collection').valueChanges();
-  }
-
-  sendPokemon(pokemonID: number) {
-    this.db.list('collection').push(pokemonID);
-  }
 
   sendToSpecific(id: string, pokemonID: number) {
     if (id != null) {
-      this.db.list(`collection/${id}`).push({ pokemonID });
+      this.db.list(`collection/${id}`).push(pokemonID);
     }
     return EMPTY;
   }
