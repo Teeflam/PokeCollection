@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/Auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,8 +8,8 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  email = '';
-  password = '';
+  email = 'admin@admin.fr';
+  password = '123456789a';
   errorMessage = '';
   error: { name: string; message: string } = { name: '', message: '' };
 
@@ -18,7 +18,7 @@ export class LoginComponent {
   SignUp(): void {
     if (this.validateForm(this.email, this.password)) {
       this.authService
-        .signUpWithEmail(this.email, this.password)
+        .signUpWithEmail2(this.email, this.password)
         .then(() => {
           this.router.navigate(['/collection']);
         })

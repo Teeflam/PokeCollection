@@ -18,18 +18,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatTableModule} from '@angular/material/table';
-import {MatGridListModule} from '@angular/material/grid-list'; 
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTabsModule } from '@angular/material/tabs';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import { AuthService } from './services/auth.service';
-
 import { environment } from '../environments/environment';
+import { RandomPokemonComponent } from './random-pokemon/random-pokemon.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +38,7 @@ import { environment } from '../environments/environment';
     CollectionComponent,
     HomeComponent,
     DescriptionComponent,
+    RandomPokemonComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +57,7 @@ import { environment } from '../environments/environment';
     MatExpansionModule,
     MatTableModule,
     MatGridListModule,
-    MatTabsModule
+    MatTabsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

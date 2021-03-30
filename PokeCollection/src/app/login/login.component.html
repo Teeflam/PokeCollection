@@ -1,18 +1,42 @@
-
 <form #form="ngForm">
   <mat-card>
     <mat-form-field appearance="fill">
-      <input matInput type="email" [(ngModel)]="email" placeholder="email address" name="email" />
+      <input
+        matInput
+        type="email"
+        [(ngModel)]="email"
+        placeholder="email address"
+        name="email"
+      />
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <input matInput type="password" [(ngModel)]="password" placeholder="password" name="password"/>
+      <input
+        matInput
+        type="password"
+        [(ngModel)]="password"
+        placeholder="password"
+        name="password"
+      />
     </mat-form-field>
   </mat-card>
   <div id="login-button">
-    <button mat-flat-button color="primary" (click)="Login()" [disabled]="form.invalid" > Submit </button>
-    <button mat-flat-button color="primary" (click)="SignUp()" [disabled]="form.invalid" >Sign up</button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="Login()"
+      [disabled]="form.invalid"
+    >
+      Submit
+    </button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="SignUp()"
+      [disabled]="form.invalid"
+    >
+      Sign up
+    </button>
   </div>
 </form>
-
 
 <!-- <button mat-flat-button color="primary" (click)="SignOut()">SignOut</button> -->
