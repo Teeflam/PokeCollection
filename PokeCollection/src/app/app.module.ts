@@ -29,6 +29,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment';
 import { RandomPokemonComponent } from './random-pokemon/random-pokemon.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { RandomPokemonComponent } from './random-pokemon/random-pokemon.componen
     CollectionComponent,
     HomeComponent,
     DescriptionComponent,
-    RandomPokemonComponent
+    RandomPokemonComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

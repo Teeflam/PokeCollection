@@ -35,7 +35,7 @@ export class CollectionComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let table : string[] = ['1', '2', '3','234', '512', '34', '802'];
+    let table : string[] = ['1', '2', '3','234', '512', '34', '802', '1', '1', '1', '1', '2', '3','234', '512', '34', '802', '1', '1', '1'];
 
     table.forEach( (pokeId) => {
       this.dataService.getMoreData(pokeId)
