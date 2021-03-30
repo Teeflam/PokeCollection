@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import Const from 'src/utils/const';
+import { AuthService } from '../services/Auth/auth.service';
+import { CollectionService } from '../services/Collection/collection.service';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -25,9 +28,14 @@ export class CollectionComponent implements OnInit {
   GENE5 = Const.GENE5;
   GENE6 = Const.GENE6;
 
-  constructor(private dataService: DataService) { }
+  condInd: number = 0;
+
+  constructor(private dataService: DataService) {
+  }
 
   ngOnInit(): void {
+    // console.log(this.pokemonList);
+
     this.dataService.getPokemon()
     .subscribe((response: any) => {
       response.results.forEach ((result: { name: string; }) => {
@@ -64,10 +72,43 @@ export class CollectionComponent implements OnInit {
     this.pokeGen.push(this.pokeGen5)
     this.pokeGen.push(this.pokeGen6)
     this.pokeGen.push(this.pokeGen7)
-    console.log(this.pokeGen)
   }
 
-  onClick(id: string) {
-    console.log(id)
+  tabChange(index: number) {
+    
+    switch(index) {
+      case 0 : {
+        this.condInd = 0;
+        break;
+      }
+      case 1 : {
+        this.condInd = 1;
+        break;
+      }
+      case 2 : {
+        this.condInd = 2;
+        break;
+      }
+      case 3 : {
+        this.condInd = 3;
+        break;
+      }
+      case 4 : {
+        this.condInd = 4;
+        break;
+      }
+      case 5 : {
+        this.condInd = 5;
+        break;
+      }
+      case 6 : {
+        this.condInd = 6;
+        break;
+      }
+      default : {
+        this.condInd = 0;
+        break;
+      } 
+    }
   }
 }
