@@ -9,7 +9,6 @@ import { CollectionService } from '../services/Collection/collection.service';
 })
 export class AllCollectionComponent implements OnInit {
   userID: string;
-  pokeList = 'number[] = []';
   pokemonList = [] as number[];
 
   constructor(private db: CollectionService, private authService: AuthService) {

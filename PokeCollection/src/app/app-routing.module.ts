@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'description/:pokeId', component: DescriptionComponent },
   { path: 'description/:id', component: DescriptionComponent },
-  { path: 'randomPokemon', component: RandomPokemonComponent },
+  { path: 'randomPokemon', component: RandomPokemonComponent }
 ];
 
 @NgModule({
