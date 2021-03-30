@@ -9,7 +9,7 @@ import { CollectionService } from '../services/Collection/collection.service';
 })
 export class AllCollectionComponent implements OnInit {
   userID: string;
-  pokemonList = [] as number[];
+  pokemonList = [] as string[];
 
   constructor(private db: CollectionService, private authService: AuthService) {
     this.userID = this.authService.currentUserId;

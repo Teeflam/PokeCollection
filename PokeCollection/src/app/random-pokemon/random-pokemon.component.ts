@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CollectionService } from '../services/Collection/collection.service';
-import { Observable } from 'rxjs';
 import { AuthService } from '../services/Auth/auth.service';
 
 @Component({
@@ -41,7 +40,6 @@ export class RandomPokemonComponent implements OnInit {
 
   getRandomId() {
     var number = Math.floor(Math.random() * 151 + 1);
-
     console.log(this.db.pokemonList);
     return number;
   }

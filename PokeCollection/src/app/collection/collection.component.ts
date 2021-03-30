@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@gangular/core';
-import { Observable } from 'rxjs';
-import Const from 'src/utils/const';
-import { AuthService } from '../services/Auth/auth.service';
-import { CollectionService } from '../services/Collection/collection.service';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -11,18 +8,24 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./collection.component.css'],
 })
 export class CollectionComponent implements OnInit {
+  @Input() pokemonList: any;
   pokeGen: any[] = [];
 
   condInd: number = 0;
 
   constructor(private dataService: DataService) {}
 
+  ngOnChanges(changes: SimpleChanges) {
+    this.doSomething(changes['pokemonList'].currentValue.length);
+  }
   ngOnInit(): void {
-    let table: string[] = ['1', '2', '3', '234', '512', '34', '802'];
-    this.pokeGen = this.dataService.sortPokemonByGene(table);
+    this.pokeGen = this.dataService.sortPokemonByGene(this.pokemonList);
   }
 
   tabChange(index: number) {
     this.condInd = index;
+  }
+  doSomething(length: number) {
+    this.pokeGen = this.dataService.sortPokemonByGene(this.pokemonList);
   }
 }
