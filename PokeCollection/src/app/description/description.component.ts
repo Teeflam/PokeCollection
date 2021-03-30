@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import Const from 'src/utils/const';
 import { DataService } from '../services/data.service';
 
@@ -25,12 +26,13 @@ export class DescriptionComponent implements OnInit {
 
   displayedColumns : string[] = ['hp', 'attack', 'defense', 'special attack', 'special defense', 'speed'];
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     let pokeStats;
+    let pokeId = this.route.snapshot.params['pokeId']
 
-    this.dataService.getMoreData("16")
+    this.dataService.getMoreData(pokeId)
       .subscribe((uniqResponse: any) => {
         this.pokemon = uniqResponse;
         

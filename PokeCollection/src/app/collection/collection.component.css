@@ -10,3 +10,9 @@ mat-grid-tile {
     border: solid 1px rgb(87, 87, 87);
     overflow: unset;
 }
+
+img {
+    object-fit: cover;
+    max-width: 100%;
+    max-height: 20em;
+}

@@ -40,6 +40,7 @@ export class LoginComponent {
         });
     }
   }
+  
   //^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$ regex for email
   validateForm(email: string, password: string): boolean {
     if (password.length < 6) {

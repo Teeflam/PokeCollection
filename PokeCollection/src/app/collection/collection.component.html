@@ -1,112 +1,14 @@
 <mat-tab-group>
-  <!-- First element -->
-  <mat-tab label="1st generation"> 
-    <mat-card class="pokemonList">
-      <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
-        <mat-grid-tile *ngFor="let poke of pokeGen1" (click) = "retrievePokeOnClick(poke.id)">
-          <mat-card-content>
-            <mat-grid-tile-header> {{ poke.name }} </mat-grid-tile-header>
-          </mat-card-content>
-          <mat-card-content>
+  <mat-card-content *ngFor= "let i of [0,1,2,3,4,5,6]">
+    <mat-tab [label] = "'generation ' + (i+1)">
+      <mat-card class="pokemonList">
+        <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'" >
+          <mat-grid-tile *ngFor="let poke of pokeGen[i]" [routerLink] = "'/description/'+ poke.id">
+            <mat-grid-tile-footer> {{ poke.name }} </mat-grid-tile-footer>
             <img mat-card-image [src]="poke.sprites.front_default" alt="Pokemon" />
-          </mat-card-content>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card>
-  </mat-tab>
-  <!-- Second element -->
-  <mat-tab label="2nd generation">
-    <mat-card class="pokemonList">
-      <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
-        <mat-grid-tile *ngFor="let poke of pokeGen2" (click) = "retrievePokeOnClick(poke.id)">
-          <mat-card-content>
-            <mat-grid-tile-header> {{ poke.name }} </mat-grid-tile-header>
-          </mat-card-content>
-          <mat-card-content>
-            <img mat-card-image [src]="poke.sprites.front_default" alt="Pokemon" />
-          </mat-card-content>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card>
-  </mat-tab>
-  <!-- Third element-->
-  <mat-tab label="3rd generation">
-    <mat-card class="pokemonList">
-      <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
-        <mat-grid-tile *ngFor="let poke of pokeGen3" (click) = "retrievePokeOnClick(poke.id)">
-          <mat-card-content>
-            <mat-grid-tile-header> {{ poke.name }} </mat-grid-tile-header>
-          </mat-card-content>
-          <mat-card-content>
-            <img mat-card-image [src]="poke.sprites.front_default" alt="Pokemon" />
-          </mat-card-content>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card>
-  </mat-tab>
-  <!-- Fourth element-->
-  <mat-tab label="4rd generation">
-    <mat-card class="pokemonList">
-      <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
-        <mat-grid-tile *ngFor="let poke of pokeGen4" (click) = "retrievePokeOnClick(poke.id)">
-          <mat-card-content>
-            <mat-grid-tile-header> {{ poke.name }} </mat-grid-tile-header>
-          </mat-card-content>
-          <mat-card-content>
-            <img mat-card-image [src]="poke.sprites.front_default" alt="Pokemon" />
-          </mat-card-content>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card>
-  </mat-tab>
-  <!-- Five element-->
-  <mat-tab label="5rd generation">
-    <mat-card class="pokemonList">
-      <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
-        <mat-grid-tile *ngFor="let poke of pokeGen5" (click) = "retrievePokeOnClick(poke.id)">
-          <mat-card-content>
-            <mat-grid-tile-header> {{ poke.name }} </mat-grid-tile-header>
-          </mat-card-content>
-          <mat-card-content>
-            <img mat-card-image [src]="poke.sprites.front_default" alt="Pokemon" />
-          </mat-card-content>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card>
-  </mat-tab>
-  <!-- Six element-->
-  <mat-tab label="6rd generation">
-    <mat-card class="pokemonList">
-      <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
-        <mat-grid-tile *ngFor="let poke of pokeGen6" (click) = "retrievePokeOnClick(poke.id)">
-          <mat-card-content>
-            <mat-grid-tile-header> {{ poke.name }} </mat-grid-tile-header>
-          </mat-card-content>
-          <mat-card-content>
-            <img mat-card-image [src]="poke.sprites.front_default" alt="Pokemon" />
-          </mat-card-content>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card>
-  </mat-tab>
-  <!-- Seven element-->
-  <mat-tab label="7rd generation">
-    <mat-card class="pokemonList">
-      <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
-        <mat-grid-tile *ngFor="let poke of pokeGen7" (click) = "retrievePokeOnClick(poke.id)">
-          <mat-card-content>
-            <mat-grid-tile-header> {{ poke.name }} </mat-grid-tile-header>
-          </mat-card-content>
-          <mat-card-content>
-            <img mat-card-image [src]="poke.sprites.front_default" alt="Pokemon" />
-          </mat-card-content>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </mat-card>
-  </mat-tab>
-
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card>
+    </mat-tab>
+  </mat-card-content>
 </mat-tab-group>
-
-
-
-

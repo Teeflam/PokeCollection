@@ -16,6 +16,8 @@ export class CollectionComponent implements OnInit {
   pokeGen6: any[] = [];
   pokeGen7: any[] = [];
 
+  pokeGen: any[] = [];
+
   GENE1 = Const.GENE1;
   GENE2 = Const.GENE2;
   GENE3 = Const.GENE3;
@@ -55,9 +57,17 @@ export class CollectionComponent implements OnInit {
         });
       });
     });
+    this.pokeGen.push(this.pokeGen1)
+    this.pokeGen.push(this.pokeGen2)
+    this.pokeGen.push(this.pokeGen3)
+    this.pokeGen.push(this.pokeGen4)
+    this.pokeGen.push(this.pokeGen5)
+    this.pokeGen.push(this.pokeGen6)
+    this.pokeGen.push(this.pokeGen7)
+    console.log(this.pokeGen)
   }
 
-  retrievePokeOnClick(id: string): void {
-    alert("The id is " + id);
+  onClick(id: string) {
+    console.log(id)
   }
 }
