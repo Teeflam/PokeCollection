@@ -1,4 +1,5 @@
 # PokeCollection
+npm install
 
 ng add @angular/material
 
