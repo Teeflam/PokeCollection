@@ -19,7 +19,6 @@ export class CollectionComponent implements OnInit {
   pokeGen6: any[] = [];
   pokeGen7: any[] = [];
 
-  // pokeGen: string[] = ['pokeGen1', 'pokeGen2', 'pokeGen3', 'pokeGen4', 'pokeGen5', 'pokeGen6', 'pokeGen7'];
   pokeGen: any[] = [];
 
   GENE1 = Const.GENE1;
@@ -65,13 +64,15 @@ export class CollectionComponent implements OnInit {
       });
     });
 
-    this.pokeGen.push(this.pokeGen1)
-    this.pokeGen.push(this.pokeGen2)
-    this.pokeGen.push(this.pokeGen3)
-    this.pokeGen.push(this.pokeGen4)
-    this.pokeGen.push(this.pokeGen5)
-    this.pokeGen.push(this.pokeGen6)
-    this.pokeGen.push(this.pokeGen7)    
+    this.pokeGen.push(this.pokeGen1);
+    this.pokeGen.push(this.pokeGen2);
+    this.pokeGen.push(this.pokeGen3);
+    this.pokeGen.push(this.pokeGen4);
+    this.pokeGen.push(this.pokeGen5);
+    this.pokeGen.push(this.pokeGen6);
+    this.pokeGen.push(this.pokeGen7);   
+
+    console.log(typeof(this.pokeGen1[0]));
   }
 
   tabChange(index: number) {
