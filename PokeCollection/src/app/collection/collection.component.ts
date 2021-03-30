@@ -19,6 +19,7 @@ export class CollectionComponent implements OnInit {
   pokeGen6: any[] = [];
   pokeGen7: any[] = [];
 
+  // pokeGen: string[] = ['pokeGen1', 'pokeGen2', 'pokeGen3', 'pokeGen4', 'pokeGen5', 'pokeGen6', 'pokeGen7'];
   pokeGen: any[] = [];
 
   GENE1 = Const.GENE1;
@@ -34,81 +35,46 @@ export class CollectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log(this.pokemonList);
 
-    this.dataService.getPokemon()
-    .subscribe((response: any) => {
-      response.results.forEach ((result: { name: string; }) => {
-        this.dataService.getMoreData(result.name)
-        .subscribe((uniqResponse: any) => {
-          if (uniqResponse.id <= this.GENE1) {
-            this.pokeGen1.push(uniqResponse);
-          }
-          else if (uniqResponse.id <= this.GENE2){
-            this.pokeGen2.push(uniqResponse);
-          }
-          else if (uniqResponse.id <= this.GENE3){
-            this.pokeGen3.push(uniqResponse);
-          }
-          else if (uniqResponse.id <= this.GENE4){
-            this.pokeGen4.push(uniqResponse);
-          }
-          else if (uniqResponse.id <= this.GENE5){
-            this.pokeGen5.push(uniqResponse);
-          }
-          else if (uniqResponse.id <= this.GENE6){
-            this.pokeGen6.push(uniqResponse);
-          }
-          else {
-            this.pokeGen7.push(uniqResponse);
-          }
-        });
+    let table : string[] = ['1', '2', '3','234', '512', '34', '802'];
+
+    table.forEach( (pokeId) => {
+      this.dataService.getMoreData(pokeId)
+      .subscribe((uniqResponse: any) => {
+        if (uniqResponse.id <= this.GENE1) {
+          this.pokeGen1.push(uniqResponse);
+        }
+        else if (uniqResponse.id <= this.GENE2){
+          this.pokeGen2.push(uniqResponse);
+        }
+        else if (uniqResponse.id <= this.GENE3){
+          this.pokeGen3.push(uniqResponse);
+        }
+        else if (uniqResponse.id <= this.GENE4){
+          this.pokeGen4.push(uniqResponse);
+        }
+        else if (uniqResponse.id <= this.GENE5){
+          this.pokeGen5.push(uniqResponse);
+        }
+        else if (uniqResponse.id <= this.GENE6){
+          this.pokeGen6.push(uniqResponse);
+        }
+        else {
+          this.pokeGen7.push(uniqResponse);
+        }
       });
     });
+
     this.pokeGen.push(this.pokeGen1)
     this.pokeGen.push(this.pokeGen2)
     this.pokeGen.push(this.pokeGen3)
     this.pokeGen.push(this.pokeGen4)
     this.pokeGen.push(this.pokeGen5)
     this.pokeGen.push(this.pokeGen6)
-    this.pokeGen.push(this.pokeGen7)
+    this.pokeGen.push(this.pokeGen7)    
   }
 
   tabChange(index: number) {
-    
-    switch(index) {
-      case 0 : {
-        this.condInd = 0;
-        break;
-      }
-      case 1 : {
-        this.condInd = 1;
-        break;
-      }
-      case 2 : {
-        this.condInd = 2;
-        break;
-      }
-      case 3 : {
-        this.condInd = 3;
-        break;
-      }
-      case 4 : {
-        this.condInd = 4;
-        break;
-      }
-      case 5 : {
-        this.condInd = 5;
-        break;
-      }
-      case 6 : {
-        this.condInd = 6;
-        break;
-      }
-      default : {
-        this.condInd = 0;
-        break;
-      } 
-    }
+    this.condInd = index;
   }
 }
