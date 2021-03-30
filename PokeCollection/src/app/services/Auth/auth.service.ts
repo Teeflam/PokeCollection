@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -7,23 +8,29 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   authState: any = null;
+  userID: any = null;
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    private router: Router,
+    private db: AngularFireDatabase
+  ) {
     this.afAuth.authState.subscribe((auth) => {
       this.authState = auth;
+      this.userID = auth?.uid;
     });
   }
 
   get isUserAnonymousLoggedIn(): boolean {
-    return this.authState !== null ? this.authState.isAnonymous : false;
+    return this.authState !== null ? this.authState.user.isAnonymous : false;
   }
 
   get currentUserId(): string {
-    return this.authState !== null ? this.authState.uid : '';
+    return this.authState !== null ? this.authState.user.uid : '';
   }
 
-  get currentUserName(): string {
-    return this.authState['email'];
+  get currentMail(): string {
+    return this.authState.user.email;
   }
 
   get currentUser(): any {
@@ -43,6 +50,8 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then((user) => {
         this.authState = user;
+
+        this.db.list('users').push(this.userID);
       })
       .catch((error) => {
         console.log(error);

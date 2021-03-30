@@ -18,14 +18,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatTableModule} from '@angular/material/table';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTableModule } from '@angular/material/table';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-
-import { AuthService } from './services/auth.service';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { environment } from '../environments/environment';
 
@@ -49,11 +48,12 @@ import { environment } from '../environments/environment';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.config),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule,
     MatListModule,
     MatExpansionModule,
-    MatTableModule
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
