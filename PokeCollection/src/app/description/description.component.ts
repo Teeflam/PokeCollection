@@ -14,6 +14,10 @@ export class DescriptionComponent implements OnInit {
   GENE1 = Const.GENE1;
   GENE2 = Const.GENE2;
   GENE3 = Const.GENE3;
+  GENE4 = Const.GENE4;
+  GENE5 = Const.GENE5;
+  GENE6 = Const.GENE6;
+  
   pokemon: any;
   data : any[] = [];
   dataSource = new MatTableDataSource<any>(this.data);

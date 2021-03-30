@@ -19,9 +19,13 @@
     </div>
 
     <mat-card-subtitle> <b>Generation :</b> </mat-card-subtitle>
-    <mat-card-content *ngIf="pokemon.id<GENE1"> Johto </mat-card-content>
-    <mat-card-content *ngIf="pokemon.id>=GENE1 && pokemon.id<GENE2"> Kanto </mat-card-content>
-    <mat-card-content *ngIf="pokemon.id>=GENE3"> Hoenn </mat-card-content>
+    <mat-card-content *ngIf="pokemon.id <= GENE1"> Johto </mat-card-content>
+    <mat-card-content *ngIf="pokemon.id >GENE1 && pokemon.id <= GENE2"> Kanto </mat-card-content>
+    <mat-card-content *ngIf="pokemon.id > GENE2 && pokemon.id <= GENE3"> Hoenn </mat-card-content>
+    <mat-card-content *ngIf="pokemon.id > GENE3 && pokemon.id <= GENE4"> Sinnoh </mat-card-content>
+    <mat-card-content *ngIf="pokemon.id > GENE4 && pokemon.id <= GENE5"> Unova </mat-card-content>
+    <mat-card-content *ngIf="pokemon.id > GENE5 && pokemon.id <= GENE6"> Kalos </mat-card-content>
+    <mat-card-content *ngIf="pokemon.id > GENE6"> Alola </mat-card-content>
 
 
     <mat-card-subtitle> <b>Moves :</b> </mat-card-subtitle>
