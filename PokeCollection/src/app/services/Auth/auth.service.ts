@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import firebase from 'firebase';
 import { Router } from '@angular/router';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -21,6 +20,7 @@ export class AuthService {
       this.userID = auth?.uid;
     });
   }
+  dbRef = this.db.database.ref('users');
 
   get isUserAnonymousLoggedIn(): boolean {
     return this.authState !== null ? this.authState.isAnonymous : false;
@@ -48,6 +48,22 @@ export class AuthService {
       .then((userCredentials) => {
         this.authState = userCredentials.user;
         this.db.list('users').push(this.userID);
+      })
+      .catch((error) => {
+        console.log(error);
+        throw error;
+      });
+  }
+
+  // with date
+  signUpWithEmail2(email: string, password: string) {
+    return this.afAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredentials) => {
+        this.authState = userCredentials.user;
+        if (this.authState != null) {
+          this.dbRef.child(this.authState.uid).set('...');
+        }
       })
       .catch((error) => {
         console.log(error);

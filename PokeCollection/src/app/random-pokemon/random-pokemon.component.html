@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let item of pokemonList">
+    {{ item }}
+  </li>
+</ul>
+
+<div><button (click)="sendPokemon(getRandomId())">Send</button></div>

@@ -18,7 +18,7 @@ export class LoginComponent {
   SignUp(): void {
     if (this.validateForm(this.email, this.password)) {
       this.authService
-        .signUpWithEmail2(this.email, this.password)
+        .signUpWithEmail(this.email, this.password)
         .then(() => {
           this.router.navigate(['/collection']);
         })
@@ -40,7 +40,7 @@ export class LoginComponent {
         });
     }
   }
-  
+
   //^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$ regex for email
   validateForm(email: string, password: string): boolean {
     if (password.length < 6) {
