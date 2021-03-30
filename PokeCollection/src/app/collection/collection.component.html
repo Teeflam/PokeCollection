@@ -1,7 +1,51 @@
-<div class="pokemonList">
-  <div class="box" *ngFor="let pokemon of pokemons">
-    <img [src]="pokemon.sprites.front_default" alt="Pokemon" />
-    <h3>{{ pokemon.name }}</h3>
-    <p><b>Type :</b> {{ pokemon.types[0].type.name }}</p>
-  </div>
-</div>
+<mat-tab-group>
+  <!-- First element -->
+  <mat-tab label="1st generation"> 
+    <mat-card class="pokemonList">
+      <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
+        <mat-grid-tile *ngFor="let poke of pokeGen1" (click) = "retrievePokeOnClick(poke.id)">
+          <mat-card-content>
+            <mat-grid-tile-header> {{ poke.name }} </mat-grid-tile-header>
+          </mat-card-content>
+          <mat-card-content>
+            <img mat-card-image [src]="poke.sprites.front_default" alt="Pokemon" />
+          </mat-card-content>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+  </mat-tab>
+  <!-- Second element -->
+  <mat-tab label="2nd generation">
+    <mat-card class="pokemonList">
+      <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
+        <mat-grid-tile *ngFor="let poke of pokeGen2" (click) = "retrievePokeOnClick(poke.id)">
+          <mat-card-content>
+            <mat-grid-tile-header> {{ poke.name }} </mat-grid-tile-header>
+          </mat-card-content>
+          <mat-card-content>
+            <img mat-card-image [src]="poke.sprites.front_default" alt="Pokemon" />
+          </mat-card-content>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+  </mat-tab>
+  <!-- Third element-->
+  <mat-tab label="3rd generation">
+    <mat-card class="pokemonList">
+      <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
+        <mat-grid-tile *ngFor="let poke of pokeGen3" (click) = "retrievePokeOnClick(poke.id)">
+          <mat-card-content>
+            <mat-grid-tile-header> {{ poke.name }} </mat-grid-tile-header>
+          </mat-card-content>
+          <mat-card-content>
+            <img mat-card-image [src]="poke.sprites.front_default" alt="Pokemon" />
+          </mat-card-content>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
+
+
+
+

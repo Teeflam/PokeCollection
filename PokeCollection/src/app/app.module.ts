@@ -20,6 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTableModule} from '@angular/material/table';
+import {MatGridListModule} from '@angular/material/grid-list'; 
+import {MatTabsModule} from '@angular/material/tabs';
 
 // Firebase
 import { AngularFireModule } from '@angular/fire';
@@ -53,7 +55,9 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.config),
     MatListModule,
     MatExpansionModule,
-    MatTableModule
+    MatTableModule,
+    MatGridListModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -5,3 +5,8 @@
     padding: 20px;
     grid-template-columns: repeat(auto-fit, minmax(23%, 1fr));
 }
+
+mat-grid-tile {
+    border: solid 1px rgb(87, 87, 87);
+    overflow: unset;
+}
