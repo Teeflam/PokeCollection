@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { EMPTY, Observable, of } from 'rxjs';
-import firebase from 'firebase';
+import { EMPTY, Observable } from 'rxjs';
 
 export interface Pokemon {
   pokemonID: number;
@@ -11,6 +10,7 @@ export interface Pokemon {
   providedIn: 'root',
 })
 export class CollectionService {
+  pokemonList = [] as number[];
   constructor(private db: AngularFireDatabase) {}
 
   // retrieve data

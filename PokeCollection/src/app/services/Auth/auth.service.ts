@@ -20,8 +20,9 @@ export class AuthService {
       this.userID = auth?.uid;
     });
   }
+  /*
   dbRef = this.db.database.ref('users');
-
+*/
   get isUserAnonymousLoggedIn(): boolean {
     return this.authState !== null ? this.authState.isAnonymous : false;
   }
@@ -55,6 +56,7 @@ export class AuthService {
       });
   }
 
+  /*
   // with date
   signUpWithEmail2(email: string, password: string) {
     return this.afAuth
@@ -71,6 +73,7 @@ export class AuthService {
       });
   }
 
+  */
   loginWithEmail(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)

@@ -29,6 +29,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment';
+import { AllCollectionComponent } from './all-collection/all-collection.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { environment } from '../environments/environment';
     HomeComponent,
     DescriptionComponent,
     RandomPokemonComponent,
+    AllCollectionComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-
-  constructor( private http: HttpClient) {  }
+  constructor(private http: HttpClient) {}
 
   getPokemon() {
-    return this.http.get('https://pokeapi.co/api/v2/pokemon?limit=50'/*802'*/);
+    return this.http.get('https://pokeapi.co/api/v2/pokemon?limit=50' /*802'*/);
   }
 
-  getMoreData (name: string) {
+  getMyPokemon(pokeId: number) {
+    return this.http.get(
+      `https://pokeapi.co/api/v2/pokemon?${pokeId}` /*802'*/
+    );
+  }
+
+  getMoreData(name: string) {
     return this.http.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
   }
 }
