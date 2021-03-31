@@ -8,7 +8,8 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./collection.component.css'],
 })
 export class CollectionComponent implements OnInit {
-  @Input() pokemonList: any;
+  @Input() pokemonList = [] as string[];
+
   pokeGen: any[] = [];
 
   condInd: number = 0;

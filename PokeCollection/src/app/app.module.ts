@@ -9,6 +9,9 @@ import { LoginComponent } from './login/login.component';
 import { CollectionComponent } from './collection/collection.component';
 import { HomeComponent } from './home/home.component';
 import { DescriptionComponent } from './description/description.component';
+import { AllCollectionComponent } from './all-collection/all-collection.component';
+import { RandomPokemonComponent } from './random-pokemon/random-pokemon.component';
+import { FooterComponent } from './footer/footer.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -26,11 +29,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 // Firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-
 import { environment } from '../environments/environment';
-import { AllCollectionComponent } from './all-collection/all-collection.component';
-import { RandomPokemonComponent } from './random-pokemon/random-pokemon.component';
-import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
