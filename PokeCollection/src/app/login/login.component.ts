@@ -20,7 +20,7 @@ export class LoginComponent {
       this.authService
         .signUpWithEmail(this.email, this.password)
         .then(() => {
-          this.router.navigate(['/collection']);
+          this.router.navigate(['/']);
         })
         .catch((_error) => {
           this.error = _error;
@@ -33,7 +33,7 @@ export class LoginComponent {
     if (this.validateForm(this.email, this.password)) {
       this.authService
         .loginWithEmail(this.email, this.password)
-        .then(() => this.router.navigate(['/collection']))
+        .then(() => this.router.navigate(['/']))
         .catch((_error) => {
           this.error = _error;
           this.router.navigate(['/']);

@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
 export class AuthService {
   authState!: firebase.User | null;
   userID: string | undefined;
+  date = new Date();
+  yourDate = new Date(
+    this.date.getTime() - 1000 * 60 * 60 * 24
+  ).toLocaleDateString();
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -20,9 +24,9 @@ export class AuthService {
       this.userID = auth?.uid;
     });
   }
-  /*
+  // Database user reference
   dbRef = this.db.database.ref('users');
-*/
+
   get isUserAnonymousLoggedIn(): boolean {
     return this.authState !== null ? this.authState.isAnonymous : false;
   }
@@ -48,23 +52,8 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then((userCredentials) => {
         this.authState = userCredentials.user;
-        this.db.list('users').push(this.userID);
-      })
-      .catch((error) => {
-        console.log(error);
-        throw error;
-      });
-  }
-
-  /*
-  // with date
-  signUpWithEmail2(email: string, password: string) {
-    return this.afAuth
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredentials) => {
-        this.authState = userCredentials.user;
         if (this.authState != null) {
-          this.dbRef.child(this.authState.uid).set('...');
+          this.dbRef.child(this.authState.uid).set(this.yourDate);
         }
       })
       .catch((error) => {
@@ -73,7 +62,6 @@ export class AuthService {
       });
   }
 
-  */
   loginWithEmail(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
