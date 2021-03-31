@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CollectionService } from '../services/Collection/collection.service';
 import { AuthService } from '../services/Auth/auth.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-random-pokemon',
@@ -10,8 +11,10 @@ import { AuthService } from '../services/Auth/auth.service';
 export class RandomPokemonComponent implements OnInit {
   userID: string;
   pokemonList = [] as number[];
+  lastDate: number = 2;
+  actualPoke: any;
 
-  constructor(private db: CollectionService, private authService: AuthService) {
+  constructor(private db: CollectionService, private authService: AuthService, private dataService: DataService ) {
     this.userID = this.authService.currentUserId;
     this.getPokemonList();
   }
@@ -39,8 +42,12 @@ export class RandomPokemonComponent implements OnInit {
   }
 
   getRandomId() {
-    var number = Math.floor(Math.random() * 151 + 1);
-    console.log(this.db.pokemonList);
+    var number = Math.floor(Math.random() * 802 + 1);
+    this.dataService.getMoreData(String(number))
+    .subscribe((uniqResponse: any) => {
+      this.actualPoke = uniqResponse;
+    });
+    this.lastDate = 3;
     return number;
   }
 }

@@ -1,7 +1,16 @@
-<ul>
-  <li *ngFor="let item of pokemonList">
-    {{ item }}
-  </li>
-</ul>
+<mat-card>
+  <mat-card-content *ngIf="lastDate === 1">
+    <mat-card-title> Select a new card !!!</mat-card-title>
+  </mat-card-content>
+  <mat-card-content *ngIf="lastDate === 2">
+    <mat-card-title> You already take your daily card :'( </mat-card-title>
+  </mat-card-content>
+  <mat-card-content *ngIf="lastDate === 3" [routerLink]="'/description/' + actualPoke.id">
+    <mat-card-title class="namePoke"> {{ actualPoke.name }}</mat-card-title>
+    <img mat-card-image [src]="actualPoke.sprites.front_default" alt="Pokemon">
+  </mat-card-content>
 
-<div><button (click)="sendPokemon(getRandomId())">Send</button></div>
+  <button mat-raised-button (click)="sendPokemon(getRandomId())">Send</button>
+</mat-card>
+
+
