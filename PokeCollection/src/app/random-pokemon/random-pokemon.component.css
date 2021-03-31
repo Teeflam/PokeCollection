@@ -24,6 +24,8 @@ mat-card {
     width: 50%;
     margin: auto;
     margin-top: 2em;
+    align-self: center; 
+    text-align: center;
 }
 
 button {

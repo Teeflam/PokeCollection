@@ -35,6 +35,7 @@ export class RandomPokemonComponent implements OnInit {
     var id = this.authService.currentUserId;
     if (id != null && id.length > 0) {
       this.db.sendToSpecific(id, pokemonID);
+      this.daily.addDate(id);
     } else {
       console.log('not connected');
     }
@@ -66,5 +67,10 @@ export class RandomPokemonComponent implements OnInit {
       .getDate(this.authService.currentUserId)
       .subscribe((lastDate) => (this.lastDate = lastDate));
     console.log(this.lastDate);
+  }
+
+  compareDate(): boolean {
+    if (this.lastDate === this.actualDate) return false;
+    else { return true; }
   }
 }
