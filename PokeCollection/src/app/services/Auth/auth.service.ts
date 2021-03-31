@@ -57,6 +57,7 @@ export class AuthService {
         }
       })
       .catch((error) => {
+        alert(error.message);
         console.log(error);
         throw error;
       });
@@ -69,6 +70,7 @@ export class AuthService {
         this.authState = userCredentials.user;
       })
       .catch((error) => {
+        alert(error.message);
         console.log(error);
         throw error;
       });

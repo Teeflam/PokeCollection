@@ -24,7 +24,7 @@ export class LoginComponent {
         })
         .catch((_error) => {
           this.error = _error;
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
         });
     }
   }
@@ -36,7 +36,7 @@ export class LoginComponent {
         .then(() => this.router.navigate(['/']))
         .catch((_error) => {
           this.error = _error;
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
         });
     }
   }
