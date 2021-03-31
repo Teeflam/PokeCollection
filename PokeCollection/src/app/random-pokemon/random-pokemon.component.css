@@ -18,9 +18,6 @@ mat-card img {
 
 mat-card-content {
     font-size: 20px;
-    object-fit: cover;
-    display: block;
-    margin: auto;
 }
 
 mat-card {
