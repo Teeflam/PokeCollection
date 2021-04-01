@@ -15,7 +15,7 @@ export class LoginComponent {
 
   constructor(public authService: AuthService, private router: Router) {}
 
-  SignUp(): void {
+  signUp(): void {
     if (this.validateForm(this.email, this.password)) {
       this.authService
         .signUpWithEmail(this.email, this.password)
@@ -29,8 +29,7 @@ export class LoginComponent {
     }
   }
 
-  
-  Login(): void {
+  login(): void {
     if (this.validateForm(this.email, this.password)) {
       this.authService
         .loginWithEmail(this.email, this.password)
@@ -42,10 +41,15 @@ export class LoginComponent {
     }
   }
 
-  //^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$ regex for email
+  /**
+   *
+   * @param email
+   * @param password
+   * @returns bool
+   */
   validateForm(email: string, password: string): boolean {
     if (password.length < 6) {
-      console.log('too short');
+      alert('too short');
       return false;
     }
     return true;
