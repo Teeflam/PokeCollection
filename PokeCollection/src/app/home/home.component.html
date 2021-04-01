@@ -1,0 +1,47 @@
+<h1 id="title">
+  Your adventure awaits!
+</h1>
+<mat-card id="presentation">
+  <div class="conteneur">
+    <div class="titlesubtitle">
+      <mat-card-title class="matcardTitle">
+        Hello my fellow pokemon trainer 
+      </mat-card-title>
+      <p>
+       <br/> You are looking for a new exciting adventure? You just found the right place!
+      </p>
+    </div>
+    <div class="conteneur_pokemon">
+      <img id="pikachu" src="https://resize-gulli.jnsmedia.fr/r/890,__ym__/img//var/jeunesse/storage/images/gulli/chaine-tv/dessins-animes/pokemon/pokemon/pikachu/26571681-1-fre-FR/Pikachu.jpg">
+      <img class="pokemon" src="https://www.pokebip.com/pokedex-images/300/4.png">
+      <img class="pokemon" src="https://www.pokepedia.fr/images/c/cc/Carapuce-RFVF.png">
+      <img id="bulbizarre" src="https://www.pokepedia.fr/images/e/ef/Bulbizarre-RFVF.png">
+     </div>
+  </div>
+  <mat-card-content>
+    <br/>This adventure is about getting a random new card each day in the random tab.
+    Once you get a new pokemon, this one will be saved in your collection. As days go on you will have your own pokedex with all the informations you need! <br/> <br/>
+    <p class="center">Sounds exciting right? <br/></p>
+    <p id="start"><a href="/login">Let's get started!<br/> <br/></a></p>
+    <p class="center">Gotta Catch'em All!</p>
+  </mat-card-content>
+</mat-card>
+
+<mat-card id="example">
+  <mat-card-title>
+    Here is an example:
+    <mat-grid-list cols="1" rowHeight="1:1" [gutterSize]="'10px'">
+      <mat-grid-tile
+        *ngFor="let poke of pokeGen[2]"
+        [routerLink]="'/description/' + poke.id"
+      >
+        <mat-grid-tile-footer> {{ poke.name }} </mat-grid-tile-footer>
+        <img
+          mat-card-image
+          [src]="poke.sprites.front_default"
+          alt="Pokemon"
+        />
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-title>
+</mat-card>
