@@ -6,26 +6,5 @@ import { DataService } from '../services/data.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent{
-  @Input() pokemonList = [] as string[];
 
-  pokeGen: any[] = [];
-
-  condInd: number = 0;
-
-  constructor(private dataService: DataService) {}
-
-  ngOnChanges(changes: SimpleChanges) {
-    this.doSomething(changes['pokemonList'].currentValue.length);
-  }
-  ngOnInit(): void {
-    this.pokeGen = this.dataService.sortPokemonByGene(this.pokemonList);
-  }
-
-  tabChange(index: number) {
-    this.condInd = index;
-  }
-  doSomething(length: number) {
-    this.pokeGen = this.dataService.sortPokemonByGene(this.pokemonList);
-  }
-}
+export class HomeComponent{}

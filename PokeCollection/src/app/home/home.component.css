@@ -61,9 +61,16 @@
   text-align: center;
 }
 
-#start{
-  text-align: center;
+#button{
 
+}
+
+#start{
+  width: 15%;
+  margin-left: 42.5%;
+  margin-right: 42.5%;
+  border: 2px solid;
+  margin-bottom: 2%;
 }
 
 
