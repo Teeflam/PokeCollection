@@ -3,55 +3,55 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/Auth/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  email = 'admin@admin.fr';
-  password = '123456789a';
-  errorMessage = '';
-  error: { name: string; message: string } = { name: '', message: '' };
+	email = 'admin@admin.fr';
+	password = '123456789a';
+	errorMessage = '';
+	error: { name: string; message: string } = { name: '', message: '' };
 
-  constructor(public authService: AuthService, private router: Router) {}
+	constructor(public authService: AuthService, private router: Router) {}
 
-  signUp(): void {
-    if (this.validateForm(this.email, this.password)) {
-      this.authService
-        .signUpWithEmail(this.email, this.password)
-        .then(() => {
-          this.router.navigate(['/']);
-        })
-        .catch((_error) => {
-          this.error = _error;
-          this.router.navigate(['/login']);
-        });
-    }
-  }
+	signUp(): void {
+		if (this.validateForm(this.email, this.password)) {
+			this.authService
+				.signUpWithEmail(this.email, this.password)
+				.then(() => {
+					this.router.navigate(['/']);
+				})
+				.catch((_error) => {
+					this.error = _error;
+					this.router.navigate(['/login']);
+				});
+		}
+	}
 
-  login(): void {
-    if (this.validateForm(this.email, this.password)) {
-      this.authService
-        .loginWithEmail(this.email, this.password)
-        .then(() => this.router.navigate(['/']))
-        .catch((_error) => {
-          this.error = _error;
-          this.router.navigate(['/login']);
-        });
-    }
-  }
+	login(): void {
+		if (this.validateForm(this.email, this.password)) {
+			this.authService
+				.loginWithEmail(this.email, this.password)
+				.then(() => this.router.navigate(['/']))
+				.catch((_error) => {
+					this.error = _error;
+					this.router.navigate(['/login']);
+				});
+		}
+	}
 
-  /**
-   *
-   * @param email
-   * @param password
-   * @returns bool
-   */
-  validateForm(email: string, password: string): boolean {
-    if (password.length < 6) {
-      alert('too short');
-      return false;
-    }
-    return true;
-  }
+	/**
+	 *
+	 * @param email
+	 * @param password
+	 * @returns bool
+	 */
+	validateForm(email: string, password: string): boolean {
+		if (password.length < 6) {
+			alert('too short');
+			return false;
+		}
+		return true;
+	}
 }
