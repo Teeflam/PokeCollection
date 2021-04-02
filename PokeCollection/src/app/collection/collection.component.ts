@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-
+import Poke from '../models/Poke';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { DataService } from '../services/data.service';
 export class CollectionComponent implements OnInit {
 	@Input() pokemonList = [] as string[];
 
-	pokeGen: any[] = [];
+	pokeGen: Poke[][] = [];
 
 	condInd: number = 0;
 

@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import Poke from '../models/Poke';
 import { AuthService } from '../services/Auth/auth.service';
 import { CollectionService } from '../services/Collection/collection.service';
 import { DailyService } from '../services/Daily/daily.service';
@@ -13,7 +14,7 @@ export class RandomPokemonComponent implements OnInit, OnDestroy {
 	pokemonList = [] as number[];
 	lastDate!: string;
 	actualDate!: string;
-	actualPoke: any;
+	actualPoke: Poke | undefined;
 
 	authUpdateSub: any;
 
@@ -63,8 +64,11 @@ export class RandomPokemonComponent implements OnInit, OnDestroy {
 		var number = Math.floor(Math.random() * 802 + 1);
 		this.dataService
 			.getMoreData(String(number))
-			.subscribe((uniqResponse: any) => {
+			.then((uniqResponse: Poke) => {
 				this.actualPoke = uniqResponse;
+			})
+			.catch((err) => {
+				// FIXME
 			});
 		return number;
 	}

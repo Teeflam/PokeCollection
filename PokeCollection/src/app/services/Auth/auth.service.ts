@@ -46,7 +46,7 @@ export class AuthService {
 			: '';
 	}
 
-	get currentUser(): any {
+	get currentUser(): firebase.User | null {
 		return typeof this.authState !== 'undefined' ? this.authState : null;
 	}
 
