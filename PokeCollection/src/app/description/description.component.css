@@ -17,7 +17,7 @@ mat-card img {
 	margin-right: auto;
 }
 
-mat-nav-list.list-horizontal {
+mat-list.list-horizontal {
 	display: flex;
 	flex-direction: row;
 }
@@ -28,7 +28,7 @@ mat-list-option {
 }
 
 mat-card-subtitle {
-	color: darkred;
+	color: blue;
 	font-size: 20px;
 }
 
@@ -46,4 +46,9 @@ table {
 
 ::ng-deep th.mat-header-cell {
 	width: 100px;
+}
+
+.itemType {
+	margin-left: auto;
+	margin-right: auto;
 }
