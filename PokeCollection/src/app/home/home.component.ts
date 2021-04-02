@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-import { Component, Input, SimpleChanges } from '@angular/core';
-=======
 import { Component } from '@angular/core';
->>>>>>> 475ac787f925976aa62d7165e6dbae01b4a69834
+import Poke from '../models/Poke';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -11,4 +8,17 @@ import { DataService } from '../services/data.service';
 	styleUrls: ['./home.component.css'],
 })
 
-export class HomeComponent{}
+export class HomeComponent{
+	
+	pokemon! : Poke;
+
+	constructor(private dataService: DataService) {}
+
+	ngOnInit(): void {
+		this.dataService
+		.getMoreData("261")
+		.then((uniqResponse: Poke) => {
+			this.pokemon = uniqResponse;
+		});
+	}
+}
