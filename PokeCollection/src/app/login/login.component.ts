@@ -47,7 +47,7 @@ export class LoginComponent {
 	 * @returns
 	 */
 	validateForm(email: string, password: string): boolean {
-		if (password.length < 6 || email.length > 0) {
+		if (password.length < 6 || email.length < 0) {
 			alert('too short');
 			return false;
 		}
