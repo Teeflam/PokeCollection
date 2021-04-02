@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogMessageComponent } from '../dialog-message/dialog-message.component';
 import Poke from '../models/Poke';
 import { AuthService } from '../services/Auth/auth.service';
 import { CollectionService } from '../services/Collection/collection.service';
@@ -72,8 +73,12 @@ export class RandomPokemonComponent implements OnInit, OnDestroy {
 				this.actualPoke = uniqResponse;
 			})
 			.catch((err) => {
-				// FIXME
-				//this.dialog.open(DialogElementsExampleDialog);
+				this.dialog.open(DialogMessageComponent, {
+					data: {
+						err: 'Pokemon not found',
+					},
+				});
+				throw err;
 			});
 		return number;
 	}
