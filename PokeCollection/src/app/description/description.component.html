@@ -12,11 +12,11 @@
 		/>
 
 		<mat-card-subtitle> <b>Type :</b> </mat-card-subtitle>
-		<mat-nav-list class="list-horizontal">
+		<mat-list class="list-horizontal">
 			<mat-list-item *ngFor="let typePoke of pokemon.types">
 				<mat-card-content> {{ typePoke.type.name }} </mat-card-content>
 			</mat-list-item>
-		</mat-nav-list>
+		</mat-list>
 
 		<div class="descriptionPoke">
 			<mat-card-subtitle> <b>Height :</b> </mat-card-subtitle>
@@ -55,13 +55,13 @@
 						Click to see the moves
 					</mat-panel-description>
 				</mat-expansion-panel-header>
-				<mat-nav-list>
+				<mat-list>
 					<mat-list-item *ngFor="let movePoke of pokemon.moves">
 						<mat-card-content>
 							{{ movePoke.move.name }}
 						</mat-card-content>
 					</mat-list-item>
-				</mat-nav-list>
+				</mat-list>
 			</mat-expansion-panel>
 		</mat-card-content>
 
