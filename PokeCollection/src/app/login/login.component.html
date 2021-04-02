@@ -1,3 +1,4 @@
+<app-navigation></app-navigation>
 <form #form="ngForm">
   <mat-card>
     <mat-form-field appearance="fill">
@@ -23,7 +24,7 @@
     <button
       mat-flat-button
       color="primary"
-      (click)="Login()"
+      (click)="login()"
       [disabled]="form.invalid"
     >
       Submit
@@ -31,7 +32,7 @@
     <button
       mat-flat-button
       color="primary"
-      (click)="SignUp()"
+      (click)="signUp()"
       [disabled]="form.invalid"
     >
       Sign up

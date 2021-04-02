@@ -3,13 +3,15 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import firebase from 'firebase';
 import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  authState!: firebase.User | null;
+  authState!: firebase.User |null | undefined;
   userID: string | undefined;
   date = new Date();
+  userIDObservable = this.afAuth.authState.pipe(map(auth =>auth?.uid))
   yourDate = new Date(
     this.date.getTime() - 1000 * 60 * 60 * 24
   ).toLocaleDateString();
@@ -28,15 +30,15 @@ export class AuthService {
   dbRef = this.db.database.ref('users');
 
   get isUserAnonymousLoggedIn(): boolean {
-    return this.authState !== null ? this.authState.isAnonymous : false;
+    return typeof this.authState !== 'undefined' && this.authState !== null ? this.authState.isAnonymous : false;
   }
 
   get currentUserId(): string {
-    return this.authState !== null ? this.authState.uid : '';
+    return typeof this.authState !== 'undefined' && this.authState !== null? this.authState.uid : '';
   }
 
   get currentUser(): any {
-    return this.authState !== null ? this.authState : null;
+    return typeof this.authState !== 'undefined' ? this.authState : null;
   }
 
   get isUserEmailLoggedIn(): boolean {
@@ -46,6 +48,10 @@ export class AuthService {
       return false;
     }
   }
+  resolve () {
+    return this.currentUserId;
+  }
+
 
   signUpWithEmail(email: string, password: string) {
     return this.afAuth
@@ -62,7 +68,6 @@ export class AuthService {
         throw error;
       });
   }
-
   loginWithEmail(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)

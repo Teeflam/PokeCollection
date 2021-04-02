@@ -30,9 +30,9 @@ export class DescriptionComponent implements OnInit {
 
   ngOnInit(): void {
     let pokeStats;
-    let pokeId = this.route.snapshot.params['pokeId']
+    let pokeID = this.route.snapshot.params['pokeID']
 
-    this.dataService.getMoreData(pokeId)
+    this.dataService.getMoreData(pokeID)
       .subscribe((uniqResponse: any) => {
         this.pokemon = uniqResponse;
         
