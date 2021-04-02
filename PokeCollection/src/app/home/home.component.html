@@ -36,5 +36,17 @@
   <mat-card-title>
     Here is an example:
   </mat-card-title>
+  <mat-card class="pokemonList">
+    <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
+        <mat-grid-tile>
+          <mat-grid-tile-footer> {{ pokemon.name }} </mat-grid-tile-footer>
+          <img
+            mat-card-image
+            [src]="pokemon.sprites.front_default"
+            alt="Pokemon"
+          />
+        </mat-grid-tile>
+    </mat-grid-list>
+</mat-card>
 </mat-card>
 

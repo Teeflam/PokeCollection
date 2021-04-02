@@ -1,30 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../services/Auth/auth.service';
 import { CollectionService } from '../services/Collection/collection.service';
 
 @Component({
-  selector: 'app-all-collection',
-  templateUrl: './all-collection.component.html',
-  styleUrls: ['./all-collection.component.css'],
+	selector: 'app-all-collection',
+	templateUrl: './all-collection.component.html',
+	styleUrls: ['./all-collection.component.css'],
 })
-export class AllCollectionComponent implements OnInit {
-  userID: string;
-  pokemonList = [] as string[];
+export class AllCollectionComponent implements OnInit, OnDestroy {
+	pokemonList = [] as string[];
 
-  constructor(private db: CollectionService, private authService: AuthService) {
-    this.userID = this.authService.currentUserId;
-    this.getPokemonList();
-  }
+	authUpdateSub: any;
 
-  ngOnInit(): void {}
-  getPokemonList() {
-    this.db
-      .getPokemon(this.authService.currentUserId)
-      .subscribe((collection) => {
-        this.pokemonList = [];
-        for (var i = 0; i < collection.length; i++) {
-          this.pokemonList.push(collection[i]);
-        }
-      });
-  }
+	constructor(
+		private db: CollectionService,
+		private authService: AuthService
+	) {}
+
+	ngOnInit(): void {
+		this.authUpdateSub = this.authService.authStateUpdate.subscribe(() => {
+			this.getPokemonList();
+		});
+	}
+
+	ngOnDestroy(): void {
+		this.authUpdateSub.unsubscribe();
+	}
+
+	getPokemonList() {
+		this.db
+			.getPokemon(this.authService.currentUserId)
+			.subscribe((collection) => {
+				this.pokemonList = [];
+				for (var i = 0; i < collection.length; i++) {
+					this.pokemonList.push(collection[i]);
+				}
+			});
+	}
 }
