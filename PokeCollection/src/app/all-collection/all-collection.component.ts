@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../services/Auth/auth.service';
 import { CollectionService } from '../services/Collection/collection.service';
 
@@ -7,19 +7,26 @@ import { CollectionService } from '../services/Collection/collection.service';
 	templateUrl: './all-collection.component.html',
 	styleUrls: ['./all-collection.component.css'],
 })
-export class AllCollectionComponent implements OnInit {
-	userID: string;
+export class AllCollectionComponent implements OnInit, OnDestroy {
 	pokemonList = [] as string[];
+
+	authUpdateSub: any;
 
 	constructor(
 		private db: CollectionService,
 		private authService: AuthService
-	) {
-		this.userID = this.authService.currentUserId;
-		this.getPokemonList();
+	) {}
+
+	ngOnInit(): void {
+		this.authUpdateSub = this.authService.authStateUpdate.subscribe(() => {
+			this.getPokemonList();
+		});
 	}
 
-	ngOnInit(): void {}
+	ngOnDestroy(): void {
+		this.authUpdateSub.unsubscribe();
+	}
+
 	getPokemonList() {
 		this.db
 			.getPokemon(this.authService.currentUserId)

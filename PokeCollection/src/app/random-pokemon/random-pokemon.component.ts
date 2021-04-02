@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../services/Auth/auth.service';
 import { CollectionService } from '../services/Collection/collection.service';
 import { DailyService } from '../services/Daily/daily.service';
@@ -9,12 +9,13 @@ import { DataService } from '../services/data.service';
 	templateUrl: './random-pokemon.component.html',
 	styleUrls: ['./random-pokemon.component.css'],
 })
-export class RandomPokemonComponent implements OnInit {
-	userID: string;
+export class RandomPokemonComponent implements OnInit, OnDestroy {
 	pokemonList = [] as number[];
 	lastDate!: string;
 	actualDate!: string;
 	actualPoke: any;
+
+	authUpdateSub: any;
 
 	constructor(
 		private db: CollectionService,
@@ -22,13 +23,19 @@ export class RandomPokemonComponent implements OnInit {
 		private dataService: DataService,
 		private daily: DailyService
 	) {
-		this.userID = this.authService.currentUserId;
 		this.actualDate = new Date().toLocaleDateString();
-		this.getPokemonList();
+		this.lastDate = this.actualDate;
 	}
 
 	ngOnInit() {
-		this.getLastDateOfUser();
+		this.authUpdateSub = this.authService.authStateUpdate.subscribe(() => {
+			this.getPokemonList();
+			this.getLastDateOfUser();
+		});
+	}
+
+	ngOnDestroy() {
+		this.authUpdateSub.unsubscribe();
 	}
 
 	sendPokemon(pokemonID: number): void {

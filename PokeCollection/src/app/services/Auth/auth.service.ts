@@ -3,11 +3,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Router } from '@angular/router';
 import firebase from 'firebase';
+import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 @Injectable({
 	providedIn: 'root',
 })
 export class AuthService {
+	authStateUpdate: Subject<boolean>; // the type does not import as it is only a trigger
 	authState!: firebase.User | null | undefined;
 	userID: string | undefined;
 	date = new Date();
@@ -21,8 +23,11 @@ export class AuthService {
 		private router: Router,
 		private db: AngularFireDatabase
 	) {
+		this.authStateUpdate = new Subject<boolean>();
+
 		this.afAuth.authState.subscribe((auth) => {
 			this.authState = auth;
+			this.authStateUpdate.next(true);
 			this.userID = auth?.uid;
 		});
 	}
