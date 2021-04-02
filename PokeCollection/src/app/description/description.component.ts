@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import Const from 'src/utils/const';
 import { DialogMessageComponent } from '../dialog-message/dialog-message.component';
 import Poke from '../models/Poke';
-import { DataService } from '../services/data.service';
+import { DataService } from '../services/Data/data.service';
 
 @Component({
 	selector: 'app-description',
@@ -43,7 +43,7 @@ export class DescriptionComponent implements OnInit {
 	constructor(
 		private dataService: DataService,
 		private route: ActivatedRoute,
-		private matDialog: MatDialog
+		private dialog: MatDialog
 	) {}
 
 	ngOnInit(): void {
@@ -67,7 +67,7 @@ export class DescriptionComponent implements OnInit {
 				this.dataSource = new MatTableDataSource<any>(this.data);
 			})
 			.catch((error) => {
-				this.matDialog.open(DialogMessageComponent, {
+				this.dialog.open(DialogMessageComponent, {
 					data: {
 						error: 'Pokemon not found',
 					},
