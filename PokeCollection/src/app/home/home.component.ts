@@ -10,15 +10,17 @@ import { DataService } from '../services/data.service';
 
 export class HomeComponent{
 	
-	pokemon! : Poke;
+	pokemonList: Poke[] = [];
 
 	constructor(private dataService: DataService) {}
 
 	ngOnInit(): void {
-		this.dataService
-		.getMoreData("261")
-		.then((uniqResponse: Poke) => {
-			this.pokemon = uniqResponse;
-		});
+		for (let i = 1; i < 6; i++) {
+			this.dataService
+			.getMoreData(i.toString())
+			.then((uniqResponse: Poke) => {
+				this.pokemonList.push(uniqResponse);
+			});
+		}
 	}
 }

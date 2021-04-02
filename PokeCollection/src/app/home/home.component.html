@@ -13,40 +13,38 @@
       </p>
     </div>
     <div class="conteneur_pokemon">
-      <img id="pikachu" src="https://resize-gulli.jnsmedia.fr/r/890,__ym__/img//var/jeunesse/storage/images/gulli/chaine-tv/dessins-animes/pokemon/pokemon/pikachu/26571681-1-fre-FR/Pikachu.jpg">
-      <img class="pokemon" src="https://www.pokebip.com/pokedex-images/300/4.png">
-      <img class="pokemon" src="https://www.pokepedia.fr/images/c/cc/Carapuce-RFVF.png">
-      <img id="bulbizarre" src="https://www.pokepedia.fr/images/e/ef/Bulbizarre-RFVF.png">
+      <img height="100px" src="https://resize-gulli.jnsmedia.fr/r/890,__ym__/img//var/jeunesse/storage/images/gulli/chaine-tv/dessins-animes/pokemon/pokemon/pikachu/26571681-1-fre-FR/Pikachu.jpg">
+      <img height="100px" src="https://cdn.bulbagarden.net/upload/7/73/004Charmander.png">
+      <img height="100px" src="https://www.pokepedia.fr/images/c/cc/Carapuce-RFVF.png">
+      <img height="100px" src="https://www.pokepedia.fr/images/e/ef/Bulbizarre-RFVF.png">
      </div>
   </div>
   <mat-card-content>
     <br/>This adventure is about getting a random new card each day in the random tab.
     Once you get a new pokemon, this one will be saved in your collection. As days go on you will have your own pokedex with all the informations you need! <br/> <br/>
     <p class="center">Sounds exciting right? <br/></p>
-    <a href ="/login">
-      <button mat-button color="primary" id="start">
-        Let's get started!
-      </button>
-    </a>
+    <div id="start-container">
+        <a href ="/login">
+          <button mat-button color="primary" id="start">
+            Let's get started!
+          </button>
+        </a>
+    </div>
     <p class="center">Gotta Catch'em All!</p>
   </mat-card-content>
-</mat-card>
 
-<mat-card id="example">
-  <mat-card-title>
+  <mat-card-title class="karim">
     Here is an example:
   </mat-card-title>
-  <mat-card class="pokemonList">
-    <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'10px'">
-        <mat-grid-tile>
-          <mat-grid-tile-footer> {{ pokemon.name }} </mat-grid-tile-footer>
+    <mat-grid-list cols="5" rowHeight="1:1" [gutterSize]="'30px'" >
+        <mat-grid-tile *ngFor="let poke of pokemonList">
+          <mat-grid-tile-footer> {{ poke.name }} </mat-grid-tile-footer>
           <img
             mat-card-image
-            [src]="pokemon.sprites.front_default"
+            [src]="poke.sprites.front_default"
             alt="Pokemon"
           />
         </mat-grid-tile>
     </mat-grid-list>
-</mat-card>
 </mat-card>
 
