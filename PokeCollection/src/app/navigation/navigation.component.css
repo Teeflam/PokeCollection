@@ -1,9 +1,9 @@
 .toolbar-spacer {
-    flex: 1 1 auto;
+	flex: 1 1 auto;
 }
 
 mat-toolbar a {
-    margin: 0 0.5em;
-    color: white;
-    text-decoration: none;
+	margin: 0 0.5em;
+	color: white;
+	text-decoration: none;
 }

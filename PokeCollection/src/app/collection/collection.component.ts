@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import Poke from '../models/Poke';
-import { DataService } from '../services/data.service';
+import { DataService } from '../services/Data/data.service';
 
 @Component({
 	selector: 'app-collection',
@@ -17,16 +17,18 @@ export class CollectionComponent implements OnInit {
 	constructor(private dataService: DataService) {}
 
 	ngOnChanges(changes: SimpleChanges) {
-		this.doSomething(changes['pokemonList'].currentValue.length);
+		this.getSortedPokemon(changes['pokemonList'].currentValue.length);
 	}
+
 	ngOnInit(): void {
 		this.pokeGen = this.dataService.sortPokemonByGene(this.pokemonList);
 	}
 
-	tabChange(index: number) {
+	tabChange(index: number): void {
 		this.condInd = index;
 	}
-	doSomething(length: number) {
+
+	getSortedPokemon(length: number): void {
 		this.pokeGen = this.dataService.sortPokemonByGene(this.pokemonList);
 	}
 }

@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogMessageComponent } from 'src/app/dialog-message/dialog-message.component';
 import Const from 'src/utils/const';
-import Poke from '../models/Poke';
+import Poke from '../../models/Poke';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class DataService {
-	constructor(private http: HttpClient) {}
+	constructor(private http: HttpClient, private dialog: MatDialog) {}
 
 	getPokemon() {
 		return this.http.get('https://pokeapi.co/api/v2/pokemon?limit=802');
@@ -64,7 +66,12 @@ export class DataService {
 					}
 				})
 				.catch((err) => {
-					// FIXME
+					this.dialog.open(DialogMessageComponent, {
+						data: {
+							error: 'Pokemon not found',
+						},
+					});
+					throw err;
 				});
 		});
 

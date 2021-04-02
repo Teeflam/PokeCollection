@@ -5,11 +5,9 @@ import { CollectionService } from '../services/Collection/collection.service';
 @Component({
 	selector: 'app-all-collection',
 	templateUrl: './all-collection.component.html',
-	styleUrls: ['./all-collection.component.css'],
 })
 export class AllCollectionComponent implements OnInit, OnDestroy {
 	pokemonList = [] as string[];
-
 	authUpdateSub: any;
 
 	constructor(
@@ -18,6 +16,7 @@ export class AllCollectionComponent implements OnInit, OnDestroy {
 	) {}
 
 	ngOnInit(): void {
+		this.getPokemonList();
 		this.authUpdateSub = this.authService.authStateUpdate.subscribe(() => {
 			this.getPokemonList();
 		});
@@ -27,7 +26,7 @@ export class AllCollectionComponent implements OnInit, OnDestroy {
 		this.authUpdateSub.unsubscribe();
 	}
 
-	getPokemonList() {
+	getPokemonList(): void {
 		this.db
 			.getPokemon(this.authService.currentUserId)
 			.subscribe((collection) => {

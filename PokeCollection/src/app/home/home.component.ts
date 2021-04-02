@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import Poke from '../models/Poke';
-import { DataService } from '../services/data.service';
+import { DataService } from '../services/Data/data.service';
+
 
 @Component({
 	selector: 'app-home',

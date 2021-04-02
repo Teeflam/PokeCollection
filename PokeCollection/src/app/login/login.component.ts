@@ -20,11 +20,10 @@ export class LoginComponent {
 			this.authService
 				.signUpWithEmail(this.email, this.password)
 				.then(() => {
-					this.router.navigate(['/']);
+					void this.router.navigate(['/']);
 				})
 				.catch((_error) => {
 					this.error = _error;
-					this.router.navigate(['/login']);
 				});
 		}
 	}
@@ -33,10 +32,10 @@ export class LoginComponent {
 		if (this.validateForm(this.email, this.password)) {
 			this.authService
 				.loginWithEmail(this.email, this.password)
-				.then(() => this.router.navigate(['/']))
+				.then(() => void this.router.navigate(['/']))
 				.catch((_error) => {
 					this.error = _error;
-					this.router.navigate(['/login']);
+					void this.router.navigate(['/login']);
 				});
 		}
 	}
@@ -45,10 +44,10 @@ export class LoginComponent {
 	 *
 	 * @param email
 	 * @param password
-	 * @returns bool
+	 * @returns
 	 */
 	validateForm(email: string, password: string): boolean {
-		if (password.length < 6) {
+		if (password.length < 6 || email.length < 0) {
 			alert('too short');
 			return false;
 		}
