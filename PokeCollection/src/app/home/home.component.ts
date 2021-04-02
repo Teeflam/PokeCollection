@@ -27,9 +27,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit(): void {
-		for (let i = 1; i < 6; i++) {
+		let array: string[] = ['12', '693', '213', '99', '654'];
+		for (let i = 0; i < 5; i++) {
 			this.dataService
-				.getMoreData(i.toString())
+				.getMoreData(array[i])
 				.then((uniqResponse: Poke) => {
 					this.pokemonList.push(uniqResponse);
 				});
