@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogMessageComponent } from 'src/app/dialog-message/dialog-message.component';
 import Const from 'src/utils/const';
 import Poke from '../../models/Poke';

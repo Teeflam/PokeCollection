@@ -19,9 +19,11 @@ export class NavigationComponent implements OnDestroy {
 			}
 		);
 	}
+
 	ngOnDestroy() {
 		this.userIDSubscription.unsubscribe();
 	}
+
 	async logout() {
 		await this.authService.signOut();
 		await this.router.navigateByUrl('/');

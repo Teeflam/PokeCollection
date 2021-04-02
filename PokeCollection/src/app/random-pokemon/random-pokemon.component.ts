@@ -5,7 +5,7 @@ import Poke from '../models/Poke';
 import { AuthService } from '../services/Auth/auth.service';
 import { CollectionService } from '../services/Collection/collection.service';
 import { DailyService } from '../services/Daily/daily.service';
-import { DataService } from '../services/data.service';
+import { DataService } from '../services/Data/data.service';
 
 @Component({
 	selector: 'app-random-pokemon',

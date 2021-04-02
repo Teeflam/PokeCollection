@@ -9,7 +9,6 @@ import { CollectionService } from '../services/Collection/collection.service';
 })
 export class AllCollectionComponent implements OnInit, OnDestroy {
 	pokemonList = [] as string[];
-
 	authUpdateSub: any;
 
 	constructor(
@@ -28,7 +27,7 @@ export class AllCollectionComponent implements OnInit, OnDestroy {
 		this.authUpdateSub.unsubscribe();
 	}
 
-	getPokemonList() {
+	getPokemonList(): void {
 		this.db
 			.getPokemon(this.authService.currentUserId)
 			.subscribe((collection) => {
