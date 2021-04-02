@@ -11,6 +11,7 @@ import { AuthService } from '../services/Auth/auth.service';
 export class NavigationComponent implements OnDestroy {
 	userID: string | undefined;
 	userIDSubscription: Subscription;
+
 	constructor(private router: Router, private authService: AuthService) {
 		this.userID = this.authService.currentUserId;
 		this.userIDSubscription = this.authService.userIDObservable.subscribe(
