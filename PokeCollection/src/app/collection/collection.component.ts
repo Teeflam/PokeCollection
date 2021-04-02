@@ -19,6 +19,7 @@ export class CollectionComponent implements OnInit {
 	ngOnChanges(changes: SimpleChanges) {
 		this.getSortedPokemon(changes['pokemonList'].currentValue.length);
 	}
+
 	ngOnInit(): void {
 		this.pokeGen = this.dataService.sortPokemonByGene(this.pokemonList);
 	}
@@ -26,6 +27,7 @@ export class CollectionComponent implements OnInit {
 	tabChange(index: number): void {
 		this.condInd = index;
 	}
+
 	getSortedPokemon(length: number): void {
 		this.pokeGen = this.dataService.sortPokemonByGene(this.pokemonList);
 	}

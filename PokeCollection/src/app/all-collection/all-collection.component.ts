@@ -5,7 +5,6 @@ import { CollectionService } from '../services/Collection/collection.service';
 @Component({
 	selector: 'app-all-collection',
 	templateUrl: './all-collection.component.html',
-	styleUrls: ['./all-collection.component.css'],
 })
 export class AllCollectionComponent implements OnInit, OnDestroy {
 	pokemonList = [] as string[];
