@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import firebase from 'firebase';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { DialogMessageComponent } from 'src/app/dialog-message/dialog-message.component';
 @Injectable({
 	providedIn: 'root',
 })
@@ -21,7 +23,8 @@ export class AuthService {
 	constructor(
 		private afAuth: AngularFireAuth,
 		private router: Router,
-		private db: AngularFireDatabase
+		private db: AngularFireDatabase,
+		public dialog: MatDialog
 	) {
 		this.authStateUpdate = new Subject<boolean>();
 
@@ -71,8 +74,11 @@ export class AuthService {
 				}
 			})
 			.catch((error) => {
-				alert(error.message);
-				console.log(error);
+				this.dialog.open(DialogMessageComponent, {
+					data: {
+						error: error.message,
+					},
+				});
 				throw error;
 			});
 	}
@@ -83,14 +89,17 @@ export class AuthService {
 				this.authState = userCredentials.user;
 			})
 			.catch((error) => {
-				alert(error.message);
-				console.log(error);
+				this.dialog.open(DialogMessageComponent, {
+					data: {
+						error: error.message,
+					},
+				});
 				throw error;
 			});
 	}
 
 	signOut(): void {
 		this.afAuth.signOut();
-		this.router.navigate(['/']);
+		void this.router.navigate(['/']);
 	}
 }

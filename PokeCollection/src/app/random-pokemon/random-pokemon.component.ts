@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import Poke from '../models/Poke';
 import { AuthService } from '../services/Auth/auth.service';
 import { CollectionService } from '../services/Collection/collection.service';
@@ -22,13 +23,16 @@ export class RandomPokemonComponent implements OnInit, OnDestroy {
 		private db: CollectionService,
 		private authService: AuthService,
 		private dataService: DataService,
-		private daily: DailyService
+		private daily: DailyService,
+		public dialog: MatDialog
 	) {
 		this.actualDate = new Date().toLocaleDateString();
 		this.lastDate = this.actualDate;
 	}
 
 	ngOnInit() {
+		this.getPokemonList();
+		this.getLastDateOfUser();
 		this.authUpdateSub = this.authService.authStateUpdate.subscribe(() => {
 			this.getPokemonList();
 			this.getLastDateOfUser();
@@ -69,6 +73,7 @@ export class RandomPokemonComponent implements OnInit, OnDestroy {
 			})
 			.catch((err) => {
 				// FIXME
+				//this.dialog.open(DialogElementsExampleDialog);
 			});
 		return number;
 	}
@@ -77,7 +82,6 @@ export class RandomPokemonComponent implements OnInit, OnDestroy {
 		this.daily
 			.getDate(this.authService.currentUserId)
 			.subscribe((lastDate) => (this.lastDate = lastDate));
-		console.log(this.lastDate);
 	}
 
 	compareDate(): boolean {

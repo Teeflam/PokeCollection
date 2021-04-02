@@ -18,6 +18,7 @@ export class AllCollectionComponent implements OnInit, OnDestroy {
 	) {}
 
 	ngOnInit(): void {
+		this.getPokemonList();
 		this.authUpdateSub = this.authService.authStateUpdate.subscribe(() => {
 			this.getPokemonList();
 		});
