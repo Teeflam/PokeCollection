@@ -16,6 +16,7 @@ export class AuthService {
 	authState!: firebase.User | null | undefined;
 	userID: string | undefined;
 	date = new Date();
+	//Create a Observable to send new userID to all subscribers if the value of userID changed 
 	userIDObservable = this.afAuth.authState.pipe(map((auth) => auth?.uid));
 	yourDate = new Date(
 		this.date.getTime() - 1000 * 60 * 60 * 24
