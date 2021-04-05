@@ -27,10 +27,11 @@ export class RandomPokemonComponent implements OnInit, OnDestroy {
 		private daily: DailyService,
 		public dialog: MatDialog
 	) {
+		//initialize date value to today
 		this.actualDate = new Date().toLocaleDateString();
 		this.lastDate = this.actualDate;
 	}
-
+	// get variables 
 	ngOnInit() {
 		this.getPokemonList();
 		this.getLastDateOfUser();
@@ -39,21 +40,23 @@ export class RandomPokemonComponent implements OnInit, OnDestroy {
 			this.getLastDateOfUser();
 		});
 	}
-
+	// unsubscribe to connection user
 	ngOnDestroy() {
 		this.authUpdateSub.unsubscribe();
 	}
-
+	//send pokemon ID to firebase 
 	sendPokemon(pokemonID: number): void {
 		var id = this.authService.currentUserId;
 		if (id != null && id.length > 0) {
+			//send to pokemon ID list of the user
 			this.db.sendToSpecific(id, pokemonID);
+			//add current user ID to the claimed pokemon user list for today
 			this.daily.addDate(id);
 		} else {
-			console.log('not connected');
+			console.log('you are not connected');
 		}
 	}
-
+	//get List of pokemon of the current user
 	getPokemonList() {
 		this.db
 			.getPokemon(this.authService.currentUserId)
@@ -64,31 +67,32 @@ export class RandomPokemonComponent implements OnInit, OnDestroy {
 				}
 			});
 	}
-
+	// get a random pokemon ID
 	getRandomId() {
 		var number = Math.floor(Math.random() * 802 + 1);
 		this.dataService
 			.getMoreData(String(number))
 			.then((uniqResponse: Poke) => {
+				// new pokemon 
 				this.actualPoke = uniqResponse;
 			})
 			.catch((err) => {
 				this.dialog.open(DialogMessageComponent, {
 					data: {
-						err: 'Pokemon not found',
+						err: 'Pokemon is not found',
 					},
 				});
 				throw err;
 			});
 		return number;
 	}
-
+  // get the date of the last claimed pokemon
 	getLastDateOfUser() {
 		this.daily
 			.getDate(this.authService.currentUserId)
 			.subscribe((lastDate) => (this.lastDate = lastDate));
 	}
-
+	//compare the current date and the last date
 	compareDate(): boolean {
 		if (this.lastDate === this.actualDate) return false;
 		else {
