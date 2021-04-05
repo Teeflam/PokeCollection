@@ -10,10 +10,17 @@ export interface Pokemon {
 	providedIn: 'root',
 })
 export class CollectionService {
+	// declare attribut
 	pokemonList = [] as number[];
+
 	constructor(private db: AngularFireDatabase) {}
 
-	// retrieve data
+	/**
+	 * retrieve pokemon collection of an user
+	 *
+	 * @param userID
+	 * @returns
+	 */
 	getPokemon(userID: string): Observable<any> {
 		if (userID != null && userID.length > 0) {
 			return this.db.list(`collection/${userID}/`).valueChanges();
@@ -21,9 +28,17 @@ export class CollectionService {
 		return EMPTY;
 	}
 
-	sendToSpecific(id: string, pokemonID: number) {
-		if (id != null) {
-			this.db.list(`collection/${id}`).push(pokemonID);
+	/**
+	 *  add to the database the specific pokemon
+	 *  into his collection
+	 *
+	 * @param userID
+	 * @param pokemonID
+	 * @returns
+	 */
+	sendToSpecific(userID: string, pokemonID: number) {
+		if (userID != null) {
+			this.db.list(`collection/${userID}`).push(pokemonID);
 		}
 		return EMPTY;
 	}
