@@ -13,6 +13,7 @@ import { DataService } from '../services/Data/data.service';
 	styleUrls: ['./description.component.css'],
 })
 export class DescriptionComponent implements OnInit {
+	// retrieve the generation constant from const.ts in utils
 	GENE1 = Const.GENE1;
 	GENE2 = Const.GENE2;
 	GENE3 = Const.GENE3;
@@ -20,7 +21,10 @@ export class DescriptionComponent implements OnInit {
 	GENE5 = Const.GENE5;
 	GENE6 = Const.GENE6;
 
+	// stockage of the actual pokemon
 	pokemon!: Poke;
+
+	// type data source of the statistics
 	data: {
 		hp: number;
 		attack: number;
@@ -31,6 +35,7 @@ export class DescriptionComponent implements OnInit {
 	}[] = [];
 	dataSource = new MatTableDataSource<any>(this.data);
 
+	// name of the columns in the table statistics
 	displayedColumns: string[] = [
 		'hp',
 		'attack',
@@ -47,7 +52,9 @@ export class DescriptionComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		// declare attributes
 		let pokeStats;
+		// retrieve the pokemon with the id in the url
 		let pokeID = this.route.snapshot.params['pokeID'];
 
 		this.dataService
@@ -55,6 +62,7 @@ export class DescriptionComponent implements OnInit {
 			.then((uniqResponse: Poke) => {
 				this.pokemon = uniqResponse;
 
+				// retrieve statistics of the pokemon
 				pokeStats = {
 					hp: uniqResponse.stats[0].base_stat,
 					attack: uniqResponse.stats[1].base_stat,
@@ -63,7 +71,10 @@ export class DescriptionComponent implements OnInit {
 					specialDefense: uniqResponse.stats[4].base_stat,
 					speed: uniqResponse.stats[5].base_stat,
 				};
+
+				// stock the stat in data
 				this.data.push(pokeStats);
+				// give the stat to the mat table
 				this.dataSource = new MatTableDataSource<any>(this.data);
 			})
 			.catch((error) => {

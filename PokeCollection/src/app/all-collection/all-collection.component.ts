@@ -7,6 +7,7 @@ import { CollectionService } from '../services/Collection/collection.service';
 	templateUrl: './all-collection.component.html',
 })
 export class AllCollectionComponent implements OnInit, OnDestroy {
+	// declare attributes
 	pokemonList = [] as string[];
 	authUpdateSub: any;
 

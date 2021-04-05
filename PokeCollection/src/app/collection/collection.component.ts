@@ -8,7 +8,7 @@ import { DataService } from '../services/Data/data.service';
 	styleUrls: ['./collection.component.css'],
 })
 export class CollectionComponent implements OnInit {
-	// declare attribut
+	// declare attributes
 	@Input() pokemonList = [] as string[];
 	pokeGen: Poke[][] = [];
 	condInd: number = 0;
@@ -23,11 +23,12 @@ export class CollectionComponent implements OnInit {
 		this.pokeGen = this.dataService.sortPokemonByGene(this.pokemonList);
 	}
 
+	// condition to load only the actual generation of poke in html
 	tabChange(index: number): void {
 		this.condInd = index;
 	}
 
-	// get list of pokemon sorted
+	// get list of pokemon sorted by generation
 	getSortedPokemon(length: number): void {
 		this.pokeGen = this.dataService.sortPokemonByGene(this.pokemonList);
 	}

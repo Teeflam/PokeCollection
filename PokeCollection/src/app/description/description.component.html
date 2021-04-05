@@ -4,6 +4,8 @@
 		<mat-card-title *ngIf="pokemon !== undefined" class="namePoke">
 			{{ pokemon.name }}</mat-card-title
 		>
+
+		<!-- front image of the pokemon -->
 		<img
 			mat-card-image
 			*ngIf="pokemon !== undefined"
@@ -11,6 +13,7 @@
 			alt="Pokemon"
 		/>
 
+		<!-- display the type of the pokemon -->
 		<mat-card-subtitle> <b>Type :</b> </mat-card-subtitle>
 		<mat-list class="list-horizontal">
 			<mat-list-item *ngFor="let typePoke of pokemon.types">
@@ -20,13 +23,15 @@
 			</mat-list-item>
 		</mat-list>
 
-		<div class="descriptionPoke">
+		<!-- height and weight of the actual pokemon -->
+		<div>
 			<mat-card-subtitle> <b>Height :</b> </mat-card-subtitle>
 			<mat-card-content> {{ pokemon.height }} </mat-card-content>
 			<mat-card-subtitle> <b>Weight :</b> </mat-card-subtitle>
 			<mat-card-content> {{ pokemon.weight }} </mat-card-content>
 		</div>
 
+		<!-- display the generation of the poke thanks to the  poke id -->
 		<mat-card-subtitle> <b>Generation :</b> </mat-card-subtitle>
 		<mat-card-content *ngIf="pokemon.id <= GENE1"> Johto </mat-card-content>
 		<mat-card-content *ngIf="pokemon.id > GENE1 && pokemon.id <= GENE2">
@@ -46,6 +51,7 @@
 		</mat-card-content>
 		<mat-card-content *ngIf="pokemon.id > GENE6"> Alola </mat-card-content>
 
+		<!-- display all the moves of the pokemon -->
 		<mat-card-subtitle> <b>Moves :</b> </mat-card-subtitle>
 		<mat-card-content>
 			<mat-expansion-panel hideToggle>
@@ -67,6 +73,7 @@
 			</mat-expansion-panel>
 		</mat-card-content>
 
+		<!-- mat table of statistics with the dataSource -->
 		<mat-card-subtitle> <b>Stats :</b> </mat-card-subtitle>
 		<table mat-table [dataSource]="dataSource">
 			<ng-container matColumnDef="hp">
