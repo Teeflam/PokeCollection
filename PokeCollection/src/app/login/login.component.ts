@@ -8,6 +8,7 @@ import { AuthService } from '../services/Auth/auth.service';
 	styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+	// declare attribut
 	email = 'admin@admin.fr';
 	password = '123456789a';
 	errorMessage = '';
@@ -15,6 +16,7 @@ export class LoginComponent {
 
 	constructor(public authService: AuthService, private router: Router) {}
 
+	// sign up function
 	signUp(): void {
 		if (this.validateForm(this.email, this.password)) {
 			this.authService
@@ -27,7 +29,7 @@ export class LoginComponent {
 				});
 		}
 	}
-
+	// login function
 	login(): void {
 		if (this.validateForm(this.email, this.password)) {
 			this.authService
@@ -41,6 +43,7 @@ export class LoginComponent {
 	}
 
 	/**
+	 * verify if the form is valid
 	 *
 	 * @param email
 	 * @param password

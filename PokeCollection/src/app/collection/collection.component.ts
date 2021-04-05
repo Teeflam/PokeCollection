@@ -8,10 +8,9 @@ import { DataService } from '../services/Data/data.service';
 	styleUrls: ['./collection.component.css'],
 })
 export class CollectionComponent implements OnInit {
+	// declare attribut
 	@Input() pokemonList = [] as string[];
-
 	pokeGen: Poke[][] = [];
-
 	condInd: number = 0;
 
 	constructor(private dataService: DataService) {}
@@ -28,6 +27,7 @@ export class CollectionComponent implements OnInit {
 		this.condInd = index;
 	}
 
+	// get list of pokemon sorted
 	getSortedPokemon(length: number): void {
 		this.pokeGen = this.dataService.sortPokemonByGene(this.pokemonList);
 	}

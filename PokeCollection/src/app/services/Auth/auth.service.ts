@@ -11,6 +11,7 @@ import { DialogMessageComponent } from 'src/app/dialog-message/dialog-message.co
 	providedIn: 'root',
 })
 export class AuthService {
+	// Declare attribut
 	authStateUpdate: Subject<boolean>; // the type does not import as it is only a trigger
 	authState!: firebase.User | null | undefined;
 	userID: string | undefined;
@@ -27,7 +28,7 @@ export class AuthService {
 		public dialog: MatDialog
 	) {
 		this.authStateUpdate = new Subject<boolean>();
-
+		// get the current user
 		this.afAuth.authState.subscribe((auth) => {
 			this.authState = auth;
 			this.authStateUpdate.next(true);
@@ -37,22 +38,26 @@ export class AuthService {
 	// Database user reference
 	dbRef = this.db.database.ref('users');
 
+	// get if the user is anonymous
 	get isUserAnonymousLoggedIn(): boolean {
 		return typeof this.authState !== 'undefined' && this.authState !== null
 			? this.authState.isAnonymous
 			: false;
 	}
 
+	// get current user id
 	get currentUserId(): string {
 		return typeof this.authState !== 'undefined' && this.authState !== null
 			? this.authState.uid
 			: '';
 	}
 
+	// get current user
 	get currentUser(): firebase.User | null {
 		return typeof this.authState !== 'undefined' ? this.authState : null;
 	}
 
+	// get if the user email is logged in
 	get isUserEmailLoggedIn(): boolean {
 		if (this.authState !== null && !this.isUserAnonymousLoggedIn) {
 			return true;
@@ -60,16 +65,21 @@ export class AuthService {
 			return false;
 		}
 	}
-	resolve() {
-		return this.currentUserId;
-	}
 
+	/**
+	 * sign up to the database
+	 *
+	 * @param email
+	 * @param password
+	 * @returns
+	 */
 	signUpWithEmail(email: string, password: string) {
 		return this.afAuth
 			.createUserWithEmailAndPassword(email, password)
 			.then((userCredentials) => {
 				this.authState = userCredentials.user;
 				if (this.authState != null) {
+					// add id to the database
 					this.dbRef.child(this.authState.uid).set(this.yourDate);
 				}
 			})
@@ -82,10 +92,19 @@ export class AuthService {
 				throw error;
 			});
 	}
+
+	/**
+	 * login with user credentials
+	 *
+	 * @param email
+	 * @param password
+	 * @returns
+	 */
 	loginWithEmail(email: string, password: string) {
 		return this.afAuth
 			.signInWithEmailAndPassword(email, password)
 			.then((userCredentials) => {
+				// retrieve userCredentials
 				this.authState = userCredentials.user;
 			})
 			.catch((error) => {

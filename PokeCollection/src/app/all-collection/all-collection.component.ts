@@ -26,11 +26,14 @@ export class AllCollectionComponent implements OnInit, OnDestroy {
 		this.authUpdateSub.unsubscribe();
 	}
 
+	// retrieve the collection of an user
 	getPokemonList(): void {
 		this.db
 			.getPokemon(this.authService.currentUserId)
 			.subscribe((collection) => {
+				// initialize empty array
 				this.pokemonList = [];
+				// hydrate the array
 				for (var i = 0; i < collection.length; i++) {
 					this.pokemonList.push(collection[i]);
 				}
